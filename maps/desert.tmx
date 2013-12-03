@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="developer_tools" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="developer_tools.png" width="166" height="199"/>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="xOffset" value="16"/>
+    <property name="yOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="yOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="yOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="yOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="xOffset" value="16"/>
+    <property name="yOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="xOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="xOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="xOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="yOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+    <property name="xOffset" value="16"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="height" value="16"/>
+    <property name="obstacle" value="1"/>
+    <property name="width" value="16"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Ground" width="40" height="40">
+  <data encoding="csv">
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,27,4,1,1,1,2,26,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,11,2,5,1,1,1,5,2,14,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,21,14,1,8,1,11,24,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,17,7,7,7,18,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,8,6,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,9,4,4,4,6,6,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,2,2,2,2,2,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,23,2,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,2,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,23,2,2,
+2,1,1,1,1,9,8,6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,21,2,2,
+2,7,7,7,9,4,4,4,6,7,7,7,7,7,7,7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,21,2,2,
+2,4,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,2,
+4,4,4,2,2,4,4,2,1,2,1,2,2,2,1,1,1,1,1,21,23,23,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,2,
+4,4,1,1,2,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,21,2,
+2,2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,23,23,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,23,23,23,1,1,1,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,23,1,1,1,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,23,1,1,1,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,23,23,1,1,1,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,4,4,4,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,2,2,2,2,4,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,4,4,4,4,4,4,4,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,2,2,2,2,2,2,2,2,4,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,4,4,4,4,4,4,4,4,4,4,4,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+</data>
+ </layer>
+ <objectgroup name="Objects" width="40" height="40">
+  <object name="player" x="416" y="416" width="32" height="32"/>
+  <object name="mine" x="624" y="560" width="32" height="32"/>
+  <object name="mine" x="304" y="432" width="32" height="32"/>
+  <object name="mine" x="144" y="336" width="32" height="32"/>
+  <object name="mine" x="144" y="144" width="32" height="32"/>
+  <object name="mine" x="400" y="48" width="32" height="32"/>
+  <object name="mine" x="848" y="240" width="32" height="32"/>
+  <object name="mine" x="752" y="368" width="32" height="32"/>
+  <object name="mine" x="1040" y="560" width="32" height="32"/>
+  <object name="mine" x="880" y="560" width="32" height="32"/>
+  <object name="mine" x="1008" y="112" width="32" height="32"/>
+  <object name="mine" x="1168" y="144" width="32" height="32"/>
+  <object name="mine" x="1168" y="752" width="32" height="32"/>
+  <object name="mine" x="816" y="944" width="32" height="32"/>
+  <object name="mine" x="592" y="784" width="32" height="32"/>
+  <object name="mine" x="336" y="816" width="32" height="32"/>
+  <object name="mine" x="272" y="848" width="32" height="32"/>
+  <object name="mine" x="144" y="912" width="32" height="32"/>
+  <object name="mine" x="208" y="1104" width="32" height="32"/>
+  <object name="mine" x="592" y="1136" width="32" height="32"/>
+  <object name="mine" x="464" y="944" width="32" height="32"/>
+  <object name="mine" x="368" y="240" width="32" height="32"/>
+ </objectgroup>
+</map>
