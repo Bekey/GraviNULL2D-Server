@@ -11,8 +11,6 @@ local Raycast = require("entities.raycast")
 
 function Amy:load()
 	self:loadBody()
-	self:loadArm()
-	self:loadJoint()
 	
 	self.Health = self.Health or 100
 	
@@ -43,21 +41,6 @@ function Amy:loadBody()
 	self.fixture = love.physics.newFixture(self.body, self.shape)
 	self.fixture:setUserData(self)
 	self.body:setFixedRotation(true)
-end
-function Amy:loadArm()
-	self.r_arm = 0
-	self.w_arm = 35
-	self.h_arm = 13
-
-	self.player_arm = {}
-	self.player_arm.body = love.physics.newBody(world, self.x+5,self.y+13, "dynamic")
-	self.player_arm.shape = love.physics.newRectangleShape(self.w_arm, self.h_arm)
-	self.player_arm.fixture = love.physics.newFixture(self.player_arm.body, self.player_arm.shape)
-end
-function Amy:loadJoint()
-	self.joint = love.physics.newRevoluteJoint(self.body, self.player_arm.body, self.x-12,self.y+5, false )
-	self.joint:enableLimit(true)
-	self.joint:setLimits(math.rad(-5), math.rad(180))
 end
 
 function Amy:Hurt(Object)
@@ -92,16 +75,14 @@ end
 
 function Amy:Grapple(Object)
 	if Object and Object.type == "mine" then
-		if not Raycast:isObstructed(self.x, self.y, Object) then
-			local delta = Vector(0,0)
-			
-			delta.x = Object.x - self.x
-			delta.y = Object.y - self.y
-			delta:normalized()
-			self.body:applyForce(delta.x*(1.2+delta:len()/2048), delta.y*(1.2+delta:len()/2048))
-		else
-			self.isGrappling = false
-		end
+		self.Grappled = Object
+		self.isGrappling = true
+		
+		local delta = Vector(0,0)
+		delta.x = Object.x - self.x
+		delta.y = Object.y - self.y
+		delta:normalized()
+		self.body:applyForce(delta.x*(1.2+delta:len()/2048), delta.y*(1.2+delta:len()/2048))
 	else
 		self.isGrappling = false
 	end
@@ -143,7 +124,7 @@ end
 
 function Amy:Grab(Object)
 	if Object and Object.type == "mine" then
-		if not Raycast:isObstructed() then
+		if not Raycast:isObstructed(self.x, self.y, Object) then
 			self.shootingMode = "RED"
 			self.isGrappling = false
 			self.isHolding = true

@@ -90,39 +90,48 @@ function entities.Destroy(id)
 end
 
 function entities:update(dt)
-	local t = {}
 	for _, entity in pairs(entities.objects) do
 		if entity.update then
 			entity:update(dt)
-			table.insert(t, self.packEntity(entity))
+		end
+	end
+end
+
+function entities.packEntities()
+	local t = {}
+	local function round(a)
+		if type(a) == number then
+			return a--tonumber(string.format("%.2f", a))
+		else
+			return a
+		end
+	end
+	for _, entity in pairs(entities.objects) do
+		if entity.update then
+			local vx, vy
+			local id = entity.id
+			local type = entity.type
+			local x, y = round(entity.x), round(entity.y)
+			if entity.body then
+				vx, vy = entity.body:getLinearVelocity()
+			end
+			local a,b,c,d
+			if type == "mine" then
+				a = entity.Owner or nil
+				b = entity.Mode ~= "NEUTRAL" and entity.Mode or nil
+				c = entity.Mode == "RED" and round(entity.Charge) or nil
+				d = entity.Target or nil
+			elseif type == "amy" or type == "player" then
+				a = round(entity.Health) or 0
+				b = entity.Score or 0
+				if entity.Grappled then c = entity.Grappled.id else c = nil end
+				if entity.Grabbed then d = entity.Grabbed.id else d = nil end
+			end
+			local data = { id, type, x, y, vx, vy, a, b, c, d }
+			table.insert(t, data)
 		end
 	end
 	return t
-end
-
-function entities.packEntity(entity)
-	local function round(a)
-		return tonumber(string.format("%.2f", a))
-	end
-	local id = entity.id
-	local type = entity.type
-	local x, y = round(entity.x), round(entity.y)
-	local vx, vy = entity.body:getLinearVelocity()
-	local v = { x = round(vx), y = round(vy) }
-	local a,b,c,d
-	if type == "mine" then
-		a = entity.Owner or nil
-		b = entity.Mode ~= "NEUTRAL" and entity.Mode or nil
-		c = entity.Mode == "RED" and round(entity.Charge) or nil
-		d = entity.Target or nil
-	elseif type == "amy" or type == "player" then
-		a = round(entity.Health) or 0
-		b = entity.Score or 0
-		c = entity.Grappled or nil
-		d = entity.Grabbed or nil
-	end
-	local data = { id, type, x, y, v.x, v.y, a, b, c, d }
-	return data
 end
 
 return entities
