@@ -12,7 +12,6 @@ function collision.beginContact(a, b, coll)
 	Console:input(string.format("Collision happened"))
 	local A, B = a:getUserData(), b:getUserData()
 	if A and B and A ~= "wall" then -- Ugly array of if statements.
-		Console:input(string.format("Collision happened between %s and %s", A.type, B.type))
 		--	AMY - MINE
 		--======================================================================
 		if A.Mode ~= "NEUTRAL" and A.type == "mine" 	and (B.type == "amy" or B.type == "player") then 
