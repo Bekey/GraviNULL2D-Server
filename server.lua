@@ -1,7 +1,7 @@
 local server = {}
 
 function server:load()
-	self.connection = lube.udpServer()
+	self.connection = lube.enetServer()
 	self.port = 18112
 	
 	self.SEQUENCE = 0
@@ -44,15 +44,14 @@ function server:update(dt)
 		self:syncAll()
 		
 		local t = { self.SEQUENCE, ["SYNC"] = self.sync, ["CREATE"] = self.create, ["KILL"] = self.kill, ["CHAT"] = self.chat }
-		
 		self:send(Serialize(t))
-		
+		--Console:input(Serialize(t))
 		self.sync = {}
 		self.create = {}
 		self.kill = {}
 		self.chat = {}
 	end
-	love.graphics.setCaption(string.format("GraviNULL2D Server - %d clients connected @ %d FPS", self.numClients,love.timer.getFPS()))
+	love.window.setTitle(string.format("GraviNULL2D Server - %d clients connected @ %d FPS", self.numClients, love.timer.getFPS()))
 end
 
 function server:send(data, clientId)
@@ -124,10 +123,7 @@ end
 function server:recv(data, clientId)
 	Console:input(string.format("Receiving data from %s = { %s }", clientId, data))
 	local t = loadstring(data)()
-	--if t[1] > Sequence then
-		--Sequence = t[1]
 	for k, v in pairs(t) do
-		--if type(v) ~= "number" then
 		if k == "GRAB" then
 			local amy = Entities.objects[v[1]]
 			if amy then
@@ -135,7 +131,7 @@ function server:recv(data, clientId)
 				if ball then
 					self:Kill(ball.id)
 					amy:Grab(ball)
-					self:syncAll()
+--					self:syncAll()
 				end
 			end
 		elseif k == "GRAPPLE" then
@@ -143,25 +139,24 @@ function server:recv(data, clientId)
 			if amy then
 				local ball = Entities.objects[v[2]]
 				if ball then
-					amy:Grapple(ball)
-					self:syncAll()
+					amy.Grappled = ball
+--					self:syncAll()
 				end
 			end
 		elseif k == "UNGRAPPLE" then
 			local amy = Entities.objects[v[1]]
 			if amy then
-				amy.Grappling = nil
+				amy.Grappled = nil
 				amy.isGrappling = false
-				self:syncAll()
+--				self:syncAll()
 			end
 		elseif k =="SHOOT" then
 			local amy = Entities.objects[v[1]]
 			if amy then
-				local ball = Entities.objects[v[2]]
-				if ball then
-					self:Kill(ball.id)
-					amy:Grab(ball)
-					self:syncAll()
+				local angle = v[2]
+				if angle then
+					amy:Shoot(angle)
+--					self:syncAll()
 				end
 			end
 		end

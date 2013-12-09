@@ -8,6 +8,7 @@
 --=============================================--
 local entities = {}
 entities.objects = {}
+entities.walls = {}
 entities.path = "entities/"
 
 local register = {}
@@ -17,10 +18,12 @@ function entities:loadAll()
 	register["amy"] = 			love.filesystem.load( entities.path .. "amy.lua" )
 	register["player"] = 		love.filesystem.load( entities.path .. "amy.lua" )
 	register["mine"] = 			love.filesystem.load( entities.path .. "mine.lua" )
-	register["FlashEffect"] = 	love.filesystem.load( entities.path .. "effects/flash.lua" )
+	register["redmine"] = 		love.filesystem.load( entities.path .. "redmine.lua" )
+	register["bluemine"] = 		love.filesystem.load( entities.path .. "bluemine.lua" )
+	--register["FlashEffect"] = 	love.filesystem.load( entities.path .. "effects/flash.lua" )
 
-	self:LoadObjects()
 	self:LoadLevel()
+	self:LoadObjects()
 end
 
 function entities:LoadObjects()
@@ -34,7 +37,7 @@ end
 
 function entities:LoadLevel() --TODO: Optimize using: http://love2d.org/forums/viewtopic.php?f=4&t=54654&p=131862#p132045 & http://www.love2d.org/wiki/TileMerging
 	local layer = map("Ground")
-	self.objects.walls = {}
+	self.walls = {}
 	for x, y, tile in layer:iterate() do
 		if tile.properties.obstacle then
 			self:makeObstacle(x, y, tile)
@@ -43,7 +46,7 @@ function entities:LoadLevel() --TODO: Optimize using: http://love2d.org/forums/v
 end
 
 function entities:makeObstacle(x, y, tile)
-	local wall = self.objects.walls[#self.objects.walls+1]
+	local wall = self.walls[#self.walls+1]
 	local w, h, xOffset, yOffset
 	
 	w = tile.properties.width or map.tileWidth
@@ -63,7 +66,7 @@ function entities.Derive(name)
 	return love.filesystem.load( entities.path .. name .. ".lua" )()
 end
 
-function entities.Spawn(name, x, y, ...)
+function entities.Spawn(name, x, y, params)
 	if register[name] then
 		id = id + 1
 		
@@ -71,7 +74,7 @@ function entities.Spawn(name, x, y, ...)
 		entity.id = id
 		entity.type = name
 		entity:setPos(x, y) --TODO: Validate if it exists, or move into :load()
-		entity:load(...)
+		entity:load(params)
 		entities.objects[id] = entity
 		
 		return entities.objects[id]
@@ -100,7 +103,7 @@ end
 function entities.packEntities()
 	local t = {}
 	local function round(a)
-		if type(a) == number then
+		if type(a) == 'number' then
 			return a--tonumber(string.format("%.2f", a))
 		else
 			return a
@@ -109,26 +112,27 @@ function entities.packEntities()
 	for _, entity in pairs(entities.objects) do
 		if entity.update then
 			local vx, vy
-			local id = entity.id
+			local eid = entity.id
 			local type = entity.type
 			local x, y = round(entity.x), round(entity.y)
 			if entity.body then
 				vx, vy = entity.body:getLinearVelocity()
 			end
 			local a,b,c,d
-			if type == "mine" then
-				a = entity.Owner or nil
-				b = entity.Mode ~= "NEUTRAL" and entity.Mode or nil
-				c = entity.Mode == "RED" and round(entity.Charge) or nil
-				d = entity.Target or nil
+			if type == "mine" or type == "redmine" or type == "bluemine" then
+				a = entity.OWNER and entity.OWNER.id or nil
+				b = entity.MODE ~= "NEUTRAL" and entity.MODE or nil
+				c = entity.MODE == "RED" and round(entity.CHARGE) or nil
+				d = entity.TARGET or nil
 			elseif type == "amy" or type == "player" then
 				a = round(entity.Health) or 0
 				b = entity.Score or 0
 				if entity.Grappled then c = entity.Grappled.id else c = nil end
-				if entity.Grabbed then d = entity.Grabbed.id else d = nil end
+				if entity.Grabbed then d = entity.Grabbed else d = nil end
 			end
-			local data = { id, type, x, y, vx, vy, a, b, c, d }
+			local data = { eid, type, x, y, round(vx), round(vy), a, b, c, d }
 			table.insert(t, data)
+			--Console:input(Serialize(data))
 		end
 	end
 	return t

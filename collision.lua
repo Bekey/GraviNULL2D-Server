@@ -14,9 +14,9 @@ function collision.beginContact(a, b, coll)
 	if A and B and A ~= "wall" then -- Ugly array of if statements.
 		--	AMY - MINE
 		--======================================================================
-		if A.Mode ~= "NEUTRAL" and A.type == "mine" 	and (B.type == "amy" or B.type == "player") then 
+		if A.MODE ~= "NEUTRAL" and A.type == "mine" and (B.type == "amy" or B.type == "player") then 
 			collision.AmyMine(B, A, coll)
-		elseif B.Mode ~= "NEUTRAL" and B.type == "mine" and (A.type == "amy" or A.type == "player") then
+		elseif B.MODE ~= "NEUTRAL" and B.type == "mine" and (A.type == "amy" or A.type == "player") then
 			collision.AmyMine(A, B, coll)
 		end
 		--

@@ -25,7 +25,7 @@ local Collision = require("collision")
 --=============================================--
 ATL.Loader.path = 'maps/'
 map = ATL.Loader.load("desert.tmx")
-love.graphics.setDefaultImageFilter( "nearest", "nearest" )
+love.graphics.setDefaultFilter( "nearest", "nearest" )
 love.physics.setMeter(32)
 world = love.physics.newWorld(0, 0, true)
 world:setCallbacks(Collision.beginContact, Collision.endContact, Collision.preSolve, Collision.postSolve)
